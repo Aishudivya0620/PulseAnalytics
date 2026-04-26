@@ -18,7 +18,7 @@ function App() {
     <ThemeProvider>
       <AuthProvider>
         <DashboardProvider>
-          <BrowserRouter>
+          <BrowserRouter basename={import.meta.env.BASE_URL}>
             <Routes>
               {/* Public Routes */}
               <Route path="/" element={<Landing />} />

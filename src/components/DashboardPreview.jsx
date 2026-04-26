@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { TrendingUp, Users, Activity, Sparkles, Zap } from 'lucide-react';
-
+import dashboard from "../images/dashboard-preview-new.png"
 const DashboardPreview = () => {
   const [isLoaded, setIsLoaded] = useState(false);
 
@@ -81,7 +81,7 @@ const DashboardPreview = () => {
 
             {/* High Fidelity Dashboard Image */}
             <motion.img
-              src="/dashboard-preview-new.png"
+              src={dashboard}
               alt="PulseAnalytics Dashboard Preview"
               initial={{ scale: 1.05, filter: 'blur(10px)' }}
               animate={{ scale: isLoaded ? 1 : 1.05, filter: isLoaded ? 'blur(0px)' : 'blur(10px)' }}

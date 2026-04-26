@@ -40,26 +40,25 @@ const Login = () => {
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         className="w-full max-w-lg relative z-10"
       >
-        <div className="text-center mb-12 space-y-4">
-          <Link to="/" className="inline-flex items-center gap-3 mb-6 group">
+        <div className="text-center mb-8 space-y-3">
+          <Link to="/" className="inline-flex items-center gap-3 mb-4 group">
             <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary-600 to-accent-blue flex items-center justify-center shadow-2xl shadow-primary-600/20 group-hover:scale-110 transition-transform">
               <BarChart2 className="text-white" size={28} />
             </div>
             <span className="text-3xl font-black tracking-tighter text-white">Pulse<span className="text-primary-400">Analytics</span></span>
           </Link>
-          <h1 className="text-4xl font-black text-white tracking-tight">Identity Verification</h1>
-          <p className="text-slate-400 font-medium tracking-wide uppercase text-[10px] tracking-[0.2em]">Secure Node Access Required</p>
+          <h1 className="text-3xl font-black text-white tracking-tight">Sign in to access your dashboard</h1>
         </div>
 
-        <div className="glass-card p-10 relative border border-white/10 overflow-visible">
+        <div className="glass-card p-8 relative border border-white/10 overflow-visible">
           {/* Decorative Sparkle */}
           <div className="absolute -top-6 -right-6 text-primary-400 animate-pulse">
              <Sparkles size={48} />
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-8">
+          <form onSubmit={handleSubmit} className="space-y-6">
             <div className="space-y-3">
-              <label className="text-[10px] font-black text-slate-500 uppercase tracking-[0.3em] ml-1">Quantum Address</label>
+              <label className="text-[10px] font-black text-slate-500 uppercase tracking-[0.3em] ml-1">Email ID</label>
               <div className="relative group">
                 <div className="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none text-slate-500 group-focus-within:text-primary-400 transition-colors">
                   <Mail size={18} />
@@ -68,7 +67,7 @@ const Login = () => {
                   required
                   type="email" 
                   placeholder="name@nexus.com"
-                  className="w-full pl-14 pr-5 py-4 rounded-2xl bg-white/5 border border-white/5 focus:border-primary-500/50 focus:outline-none focus:ring-4 focus:ring-primary-500/10 transition-all text-white placeholder:text-slate-600 font-medium"
+                  className="w-full pl-14 pr-5 py-3.5 rounded-2xl bg-white/5 border border-white/5 focus:border-primary-500/50 focus:outline-none focus:ring-4 focus:ring-primary-500/10 transition-all text-white placeholder:text-slate-600 font-medium"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
@@ -77,8 +76,8 @@ const Login = () => {
 
             <div className="space-y-3">
               <div className="flex justify-between items-center px-1">
-                <label className="text-[10px] font-black text-slate-500 uppercase tracking-[0.3em]">Access Key</label>
-                <a href="#" className="text-[10px] font-black text-primary-400 hover:text-primary-300 transition-colors uppercase tracking-widest">Reset Hash</a>
+                <label className="text-[10px] font-black text-slate-500 uppercase tracking-[0.3em]">Password</label>
+                <a href="#" className="text-[10px] font-black text-primary-400 hover:text-primary-300 transition-colors uppercase tracking-widest">Forgot Password?</a>
               </div>
               <div className="relative group">
                 <div className="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none text-slate-500 group-focus-within:text-primary-400 transition-colors">
@@ -88,7 +87,7 @@ const Login = () => {
                   required
                   type="password" 
                   placeholder="••••••••••••"
-                  className="w-full pl-14 pr-5 py-4 rounded-2xl bg-white/5 border border-white/5 focus:border-primary-500/50 focus:outline-none focus:ring-4 focus:ring-primary-500/10 transition-all text-white placeholder:text-slate-600 font-medium"
+                  className="w-full pl-14 pr-5 py-3.5 rounded-2xl bg-white/5 border border-white/5 focus:border-primary-500/50 focus:outline-none focus:ring-4 focus:ring-primary-500/10 transition-all text-white placeholder:text-slate-600 font-medium"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 />
@@ -113,7 +112,7 @@ const Login = () => {
             <button 
               type="submit"
               disabled={loading}
-              className="w-full py-5 bg-primary-600 hover:bg-primary-500 disabled:opacity-70 text-white rounded-2xl text-xs font-black shadow-[0_20px_50px_rgba(99,102,241,0.3)] transition-all hover:-translate-y-1 active:translate-y-0 flex items-center justify-center gap-3 uppercase tracking-[0.2em]"
+              className="w-full py-4 bg-primary-600 hover:bg-primary-500 disabled:opacity-70 text-white rounded-2xl text-xs font-black shadow-[0_20px_50px_rgba(99,102,241,0.3)] transition-all hover:-translate-y-1 active:translate-y-0 flex items-center justify-center gap-3 uppercase tracking-[0.2em]"
             >
               {loading ? (
                 <>
@@ -121,21 +120,21 @@ const Login = () => {
                 </>
               ) : (
                 <>
-                  Initiate Sync <ArrowRight size={20} />
+                  Login <ArrowRight size={20} />
                 </>
               )}
             </button>
           </form>
 
-          <div className="mt-10 pt-10 border-t border-white/5 text-center">
+          <div className="mt-8 pt-8 border-t border-white/5 text-center">
             <p className="text-xs font-bold text-slate-500">
               New to the ecosystem?{' '}
-              <a href="#" className="font-black text-primary-400 hover:text-primary-300 transition-colors uppercase tracking-widest ml-2">Request Invite</a>
+              <a href="#" className="font-black text-primary-400 hover:text-primary-300 transition-colors uppercase tracking-widest ml-2">Sign Up</a>
             </p>
           </div>
         </div>
 
-        <div className="mt-12 text-center">
+        <div className="mt-8 text-center">
           <Link to="/" className="text-[10px] font-black text-slate-500 hover:text-white transition-colors uppercase tracking-[0.3em] flex items-center justify-center gap-2">
             <span className="text-lg">←</span> Return to Base
           </Link>

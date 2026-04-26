@@ -5,6 +5,7 @@
   "type": "module",
   "homepage": "https://Aishudivya0620.github.io/PulseAnalytics",
   "scripts": {
+    "start": "npm run dev",
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
