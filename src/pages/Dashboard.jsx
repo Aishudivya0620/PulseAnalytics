@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import KpiCard from '../components/KpiCard';
 import { Users, Activity, FileText, MousePointerClick, ChevronDown, RefreshCw, Sparkles } from 'lucide-react';
 import {
@@ -100,6 +101,7 @@ const EmptyState = ({ platform, onConnect }) => (
 
 const Dashboard = () => {
   const { timeRange, setTimeRange, platform, setPlatform } = useDashboard();
+  const navigate = useNavigate();
   const [loading, setLoading]   = useState(true);
   const [refreshing, setRefreshing] = useState(false);
   const [data, setData]         = useState(null);
@@ -194,7 +196,7 @@ const Dashboard = () => {
       {!isCurrentConnected && !loading ? (
         <EmptyState 
           platform={platform} 
-          onConnect={() => window.location.href = '/settings'} 
+          onConnect={() => navigate('/settings?tab=Integrations')} 
         />
       ) : (
         <>

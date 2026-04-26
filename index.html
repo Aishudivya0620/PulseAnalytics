@@ -22,14 +22,16 @@
           // Handle HashRouter redirection for manual URL entry
           var path = window.location.pathname;
           var hash = window.location.hash;
-          // Production base check
-          var base = '/PulseAnalytics/';
+          var base = '/PulseAnalytics/'; // Match your GitHub Pages sub-path
           
           if (!hash) {
-            if (path.startsWith(base) && path !== base) {
-              var route = path.substring(base.length);
-              window.location.replace(base + '#/' + route);
-            } else if (path !== '/' && path !== '/PulseAnalytics' && path !== '/PulseAnalytics/') {
+            if (path.startsWith(base)) {
+              if (path !== base && path !== base.slice(0, -1)) {
+                var route = path.substring(base.length);
+                window.location.replace(base + '#/' + route);
+              }
+            } else if (path !== '/') {
+              // Local dev or non-base path
               window.location.replace('/#/' + path.substring(1));
             }
           }
