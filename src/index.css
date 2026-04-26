@@ -1,0 +1,128 @@
+/* PulseAnalytics Design System v2.1 - Enhanced Neon-Glass Theme */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-main: 248, 250, 252; /* slate-50 */
+    --text-main: 15, 23, 42; /* slate-900 */
+    --text-muted: 100, 116, 139; /* slate-500 */
+    --glass-bg: 255, 255, 255, 0.7;
+    --glass-border: 226, 232, 240, 0.8; /* slate-200 */
+    --panel-bg: 255, 255, 255, 0.4;
+    --aura-1: 99, 102, 241, 0.08;
+    --aura-2: 56, 189, 248, 0.06;
+    --aura-3: 16, 185, 129, 0.04;
+  }
+
+  .dark {
+    --bg-main: 3, 7, 18; /* even deeper blue/black */
+    --text-main: 248, 250, 252;
+    --text-muted: 148, 163, 184;
+    --glass-bg: 15, 23, 42, 0.6;
+    --glass-border: 255, 255, 255, 0.12;
+    --panel-bg: 30, 41, 59, 0.4;
+    --aura-1: 99, 102, 241, 0.25; /* Indigo glow */
+    --aura-2: 192, 38, 211, 0.2;  /* Fuchsia glow */
+    --aura-3: 45, 212, 191, 0.15; /* Teal glow */
+  }
+
+  body {
+    background-color: rgb(var(--bg-main));
+    color: rgb(var(--text-main));
+    @apply antialiased font-sans;
+    background-image: 
+      radial-gradient(at 0% 0%, rgba(var(--aura-1)) 0px, transparent 50%),
+      radial-gradient(at 100% 0%, rgba(var(--aura-2)) 0px, transparent 50%),
+      radial-gradient(at 50% 100%, rgba(var(--aura-3)) 0px, transparent 50%);
+    background-attachment: fixed;
+    transition: background-color 0.5s ease, color 0.5s ease;
+  }
+}
+
+@layer components {
+  .glass-card {
+    background-color: rgba(var(--glass-bg));
+    border-color: rgba(var(--glass-border));
+    @apply backdrop-blur-3xl border rounded-[2.5rem] shadow-xl transition-all duration-500;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .glass-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(130deg, rgba(255,255,255,0.05) 0%, transparent 100%);
+    pointer-events: none;
+  }
+  
+  .glass-panel {
+    background-color: rgba(var(--panel-bg));
+    border-color: rgba(var(--glass-border));
+    @apply backdrop-blur-3xl border transition-colors duration-500;
+  }
+
+  .neon-border {
+    @apply border-primary-500/30 shadow-[0_0_15px_rgba(99,102,241,0.1)];
+  }
+
+  .nav-item {
+    color: rgb(var(--text-muted));
+    @apply flex items-center gap-3 px-5 py-3.5 rounded-2xl transition-all duration-500 font-semibold hover:bg-white/10 hover:text-primary-500;
+  }
+
+  .nav-item.active {
+    background-color: rgba(var(--aura-1));
+    border: 1px solid rgba(var(--aura-1));
+    @apply shadow-lg shadow-primary-500/5;
+    color: theme('colors.primary.500');
+  }
+
+  .btn-primary {
+    @apply px-6 py-3 bg-primary-600 hover:bg-primary-500 text-white rounded-2xl font-black text-sm transition-all hover:scale-105 active:scale-95 shadow-lg shadow-primary-600/20;
+  }
+}
+
+@layer utilities {
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r;
+    background-image: linear-gradient(to right, theme('colors.primary.500'), theme('colors.accent.blue'), theme('colors.accent.green'));
+  }
+
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(var(--bg-main), 0.5);
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-slate-300 dark:bg-slate-800 rounded-full hover:bg-slate-400 dark:hover:bg-slate-700 transition-colors;
+}
+
+/* Recharts Customization */
+.recharts-cartesian-grid-horizontal line,
+.recharts-cartesian-grid-vertical line {
+  stroke: rgba(var(--text-muted), 0.1);
+}
+
+.recharts-tooltip-cursor {
+  fill: rgba(var(--text-muted), 0.05);
+}
