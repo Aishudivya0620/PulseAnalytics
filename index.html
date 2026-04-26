@@ -22,21 +22,23 @@
           // Handle HashRouter redirection for manual URL entry
           var path = window.location.pathname;
           var hash = window.location.hash;
-          // Production base check
-          var base = '/PulseAnalytics/';
+          var base = '/PulseAnalytics/'; // Match your GitHub Pages sub-path
           
           if (!hash) {
-            if (path.startsWith(base) && path !== base) {
-              var route = path.substring(base.length);
-              window.location.replace(base + '#/' + route);
-            } else if (path !== '/' && path !== '/PulseAnalytics' && path !== '/PulseAnalytics/') {
+            if (path.startsWith(base)) {
+              if (path !== base && path !== base.slice(0, -1)) {
+                var route = path.substring(base.length);
+                window.location.replace(base + '#/' + route);
+              }
+            } else if (path !== '/') {
+              // Local dev or non-base path
               window.location.replace('/#/' + path.substring(1));
             }
           }
         } catch (e) {}
       })();
     </script>
-    <script type="module" crossorigin src="/PulseAnalytics/assets/index-CVsEH6U_.js"></script>
+    <script type="module" crossorigin src="/PulseAnalytics/assets/index-8asdaMip.js"></script>
     <link rel="modulepreload" crossorigin href="/PulseAnalytics/assets/rolldown-runtime-BYbx6iT9.js">
     <link rel="modulepreload" crossorigin href="/PulseAnalytics/assets/vendor-Gdv8q17n.js">
     <link rel="modulepreload" crossorigin href="/PulseAnalytics/assets/vendor-charts-CUX6YXPG.js">
