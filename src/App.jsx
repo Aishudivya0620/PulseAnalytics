@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
 import DashboardLayout from './layouts/DashboardLayout';
 import Dashboard from './pages/Dashboard';
 import Analytics from './pages/Analytics';
@@ -18,7 +18,7 @@ function App() {
     <ThemeProvider>
       <AuthProvider>
         <DashboardProvider>
-          <BrowserRouter basename={import.meta.env.BASE_URL}>
+          <HashRouter>
             <Routes>
               {/* Public Routes */}
               <Route path="/" element={<Landing />} />
@@ -38,7 +38,7 @@ function App() {
               {/* Catch-all Redirect */}
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
-          </BrowserRouter>
+          </HashRouter>
         </DashboardProvider>
       </AuthProvider>
     </ThemeProvider>
