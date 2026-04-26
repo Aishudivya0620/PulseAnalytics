@@ -45,14 +45,14 @@ const CustomTooltip = ({ active, payload, label }) => {
 
 // Filter Select Component
 const FilterSelect = ({ value, onChange, options, connections = {} }) => (
-  <div className="relative flex items-center group">
+  <div className="relative flex items-center group w-full sm:w-auto">
     <div className="absolute left-4 z-20 pointer-events-none opacity-50 group-hover:opacity-100 transition-opacity">
       <div className={`w-1.5 h-1.5 rounded-full ${value === 'All Platforms' ? 'bg-primary-500' : (connections[value.toLowerCase()] ? 'bg-emerald-500' : 'bg-slate-500')}`} />
     </div>
     <select
       value={value}
       onChange={(e) => onChange(e.target.value)}
-      className="appearance-none pl-8 pr-10 py-2.5 rounded-2xl glass-panel border border-white/10 text-sm font-semibold text-slate-300 outline-none focus:ring-2 focus:ring-primary-500/50 cursor-pointer bg-transparent transition-all duration-300 hover:border-white/20"
+      className="appearance-none w-full pl-8 pr-10 py-2.5 rounded-2xl glass-panel border border-white/10 text-sm font-semibold text-slate-300 outline-none focus:ring-2 focus:ring-primary-500/50 cursor-pointer bg-transparent transition-all duration-300 hover:border-white/20"
     >
       {options.map((opt) => {
         const isConnected = opt === 'All Platforms' || connections[opt.toLowerCase()];
@@ -71,7 +71,7 @@ const EmptyState = ({ platform, onConnect }) => (
   <motion.div 
     initial={{ opacity: 0, scale: 0.98 }}
     animate={{ opacity: 1, scale: 1 }}
-    className="glass-card p-20 flex flex-col items-center justify-center text-center space-y-8 min-h-[500px]"
+    className="glass-card p-8 sm:p-20 flex flex-col items-center justify-center text-center space-y-8 min-h-[500px]"
   >
     <div className="relative">
       <div className="absolute -inset-10 bg-primary-600/20 blur-[60px] rounded-full animate-pulse" />
@@ -167,29 +167,33 @@ const Dashboard = () => {
         animate={{ opacity: 1, x: 0 }}
         className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6"
       >
-        <div className="space-y-1">
-          <h1 className="text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+        <div className="space-y-1 w-full lg:w-auto">
+          <h1 className="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
             Dashboard <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary-500 to-accent-blue">Overview</span>
           </h1>
-          <p className="text-slate-500 dark:text-slate-400 text-sm font-medium">
+          <p className="text-slate-500 dark:text-slate-400 text-xs sm:text-sm font-medium">
             Real-time analytics for <span className="text-primary-500 font-bold">{platform}</span> across <span className="text-primary-500 font-bold">{timeRange}</span>
           </p>
         </div>
-        <div className="flex flex-wrap items-center gap-3 glass-panel p-1.5 rounded-3xl border border-white/10 shadow-lg shadow-black/5 dark:shadow-black/20">
-          <FilterSelect value={platform} onChange={setPlatform} options={PLATFORMS} connections={connections} />
-          <FilterSelect value={timeRange} onChange={setTimeRange} options={TIME_RANGES} />
-          <div className="w-px h-6 bg-black/5 dark:bg-white/10 mx-1" />
-          <button
-            onClick={() => loadData(true)}
-            disabled={loading || refreshing}
-            className="p-2.5 rounded-2xl glass-panel border border-white/10 text-slate-500 dark:text-slate-400 hover:text-primary-500 transition-all disabled:opacity-40 hover:scale-105 active:scale-95"
-            title="Refresh data"
-          >
-            <RefreshCw size={18} className={refreshing ? 'animate-spin' : ''} />
-          </button>
-          <button className="px-6 py-2.5 bg-primary-600 hover:bg-primary-700 text-white rounded-2xl shadow-xl shadow-primary-600/20 transition-all font-bold text-sm hover:scale-105 active:scale-95">
-            Export Data
-          </button>
+        <div className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-3 w-full lg:w-auto glass-panel p-2 sm:p-1.5 rounded-3xl border border-white/10 shadow-lg shadow-black/5 dark:shadow-black/20">
+          <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
+            <FilterSelect value={platform} onChange={setPlatform} options={PLATFORMS} connections={connections} />
+            <FilterSelect value={timeRange} onChange={setTimeRange} options={TIME_RANGES} />
+          </div>
+          <div className="hidden sm:block w-px h-6 bg-black/5 dark:bg-white/10 mx-1" />
+          <div className="flex items-center gap-3 w-full sm:w-auto">
+            <button
+              onClick={() => loadData(true)}
+              disabled={loading || refreshing}
+              className="flex-1 sm:flex-none p-2.5 rounded-2xl glass-panel border border-white/10 text-slate-500 dark:text-slate-400 hover:text-primary-500 transition-all disabled:opacity-40 flex items-center justify-center"
+              title="Refresh data"
+            >
+              <RefreshCw size={18} className={refreshing ? 'animate-spin' : ''} />
+            </button>
+            <button className="flex-[2] sm:flex-none px-6 py-2.5 bg-primary-600 hover:bg-primary-700 text-white rounded-2xl shadow-xl shadow-primary-600/20 transition-all font-bold text-sm">
+              Export Data
+            </button>
+          </div>
         </div>
       </motion.div>
 

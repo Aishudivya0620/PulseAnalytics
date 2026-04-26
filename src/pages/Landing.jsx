@@ -88,7 +88,7 @@ const Landing = () => {
             Platform V2.0 Now Live
           </motion.div>
 
-          <motion.h1 variants={itemVariants} className="text-6xl md:text-8xl font-black tracking-tighter text-white leading-[0.9] max-w-5xl mx-auto">
+          <motion.h1 variants={itemVariants} className="text-4xl sm:text-6xl md:text-8xl font-black tracking-tighter text-white leading-[0.9] max-w-5xl mx-auto">
             Decipher Your <br /> <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary-400 via-accent-blue to-accent-green">Social DNA</span>
           </motion.h1>
 
@@ -200,7 +200,7 @@ const Landing = () => {
                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent-blue/10 border border-accent-blue/20 text-accent-blue text-[10px] font-black uppercase tracking-[0.2em]">
                   AI Engine
                </div>
-               <h2 className="text-5xl md:text-7xl font-black text-white leading-[0.9]">Predicting the <span className="text-accent-blue">Unpredictable.</span></h2>
+               <h2 className="text-3xl sm:text-5xl md:text-7xl font-black text-white leading-[0.9]">Predicting the <span className="text-accent-blue">Unpredictable.</span></h2>
                <p className="text-slate-400 text-lg font-medium leading-relaxed">
                   Our neural networks process billions of data points to provide you with a 'Success Probability' score for every draft you create.
                </p>
@@ -351,7 +351,7 @@ const Landing = () => {
           <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-black/20 blur-[100px] rounded-full -translate-x-1/3 translate-y-1/3" />
           
           <div className="relative z-10 space-y-12">
-            <h2 className="text-5xl md:text-8xl font-black text-white tracking-tighter leading-[0.85]">Become <br /> Inevitable.</h2>
+            <h2 className="text-4xl sm:text-5xl md:text-8xl font-black text-white tracking-tighter leading-[0.85]">Become <br /> Inevitable.</h2>
             <p className="text-primary-100 text-xl font-medium max-w-2xl mx-auto leading-relaxed">
               Stop guessing. Start growing. PulseAnalytics provides the blueprint for digital dominance.
             </p>

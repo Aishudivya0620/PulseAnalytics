@@ -100,18 +100,18 @@ const Posts = () => {
     >
       {/* ── Header ── */}
       <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6">
-        <div className="space-y-1">
-          <h1 className="text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+        <div className="space-y-1 w-full lg:w-auto">
+          <h1 className="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
             Content <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary-500 to-accent-blue">Command</span>
           </h1>
-          <p className="text-sm text-slate-500 dark:text-slate-400 font-medium mt-1">
+          <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 font-medium mt-1">
             Orchestrate and analyze your <span className="text-primary-500 font-bold">{processedPosts.length}</span> active posts
           </p>
         </div>
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 w-full lg:w-auto">
            <button 
              onClick={() => setIsModalOpen(true)}
-             className="px-6 py-3 bg-primary-600 hover:bg-primary-500 text-white rounded-2xl text-sm font-black shadow-xl shadow-primary-600/20 transition-all hover:scale-105 active:scale-95 flex items-center gap-2 group"
+             className="w-full lg:w-auto px-6 py-3 bg-primary-600 hover:bg-primary-500 text-white rounded-2xl text-sm font-black shadow-xl shadow-primary-600/20 transition-all hover:scale-105 active:scale-95 flex items-center justify-center gap-2 group"
            >
              <Plus size={18} className="group-hover:rotate-90 transition-transform duration-300" />
              CREATE POST
@@ -120,7 +120,7 @@ const Posts = () => {
       </div>
 
       {/* ── Filters & Actions ── */}
-      <div className="glass-card p-6 flex flex-col lg:flex-row gap-6 items-center">
+      <div className="glass-card p-4 sm:p-6 flex flex-col lg:flex-row gap-4 sm:gap-6 items-center">
         {/* Search */}
         <div className="relative flex-1 w-full">
           <Search size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-primary-500 transition-colors" />
@@ -129,17 +129,17 @@ const Posts = () => {
             placeholder="Search by title or content (⌘+F)" 
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full glass-panel border border-white/10 pl-12 pr-4 py-3.5 rounded-2xl text-sm font-bold text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 outline-none focus:border-primary-500/50 transition-all shadow-inner"
+            className="w-full glass-panel border border-white/10 pl-12 pr-4 py-3.5 rounded-2xl text-sm font-bold text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 outline-none focus:border-primary-500/50 transition-all shadow-inner bg-transparent"
           />
         </div>
 
-        <div className="flex flex-wrap items-center gap-3 w-full lg:w-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 w-full lg:w-auto">
           {/* Platform Filter */}
-          <div className="relative group min-w-[140px]">
+          <div className="relative group w-full">
             <select 
               value={platform}
               onChange={(e) => setPlatform(e.target.value)}
-              className="w-full appearance-none glass-panel border border-white/10 pl-4 pr-10 py-3 rounded-2xl text-sm font-bold text-slate-600 dark:text-slate-300 outline-none cursor-pointer hover:bg-primary-500/10 transition-all"
+              className="w-full appearance-none glass-panel border border-white/10 pl-4 pr-10 py-3 rounded-2xl text-sm font-bold text-slate-600 dark:text-slate-300 outline-none cursor-pointer hover:bg-primary-500/10 transition-all bg-transparent"
             >
               {PLATFORMS.map(p => <option key={p} value={p} className="bg-white dark:bg-slate-900 text-slate-900 dark:text-white">{p}</option>)}
             </select>
@@ -147,11 +147,11 @@ const Posts = () => {
           </div>
 
           {/* Status Filter */}
-          <div className="relative group min-w-[140px]">
+          <div className="relative group w-full">
             <select 
               value={statusFilter}
               onChange={(e) => setStatusFilter(e.target.value)}
-              className="w-full appearance-none bg-white/5 border border-white/10 pl-4 pr-10 py-3 rounded-2xl text-sm font-bold text-slate-300 outline-none cursor-pointer hover:bg-white/10 transition-all"
+              className="w-full appearance-none bg-white/5 border border-white/10 pl-4 pr-10 py-3 rounded-2xl text-sm font-bold text-slate-300 outline-none cursor-pointer hover:bg-white/10 transition-all bg-transparent"
             >
               {STATUSES.map(s => <option key={s} value={s} className="bg-slate-900">{s === 'All' ? 'All Statuses' : s}</option>)}
             </select>
@@ -159,11 +159,11 @@ const Posts = () => {
           </div>
 
           {/* Sort Filter */}
-          <div className="relative group min-w-[140px]">
+          <div className="relative group w-full">
             <select 
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value)}
-              className="w-full appearance-none bg-white/5 border border-white/10 pl-4 pr-10 py-3 rounded-2xl text-sm font-bold text-slate-300 outline-none cursor-pointer hover:bg-white/10 transition-all"
+              className="w-full appearance-none bg-white/5 border border-white/10 pl-4 pr-10 py-3 rounded-2xl text-sm font-bold text-slate-300 outline-none cursor-pointer hover:bg-white/10 transition-all bg-transparent"
             >
               {SORT_OPTIONS.map(o => <option key={o.value} value={o.value} className="bg-slate-900">{o.label}</option>)}
             </select>

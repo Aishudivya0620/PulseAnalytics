@@ -33,7 +33,7 @@ const EmptyState = ({ platform, onConnect }) => (
   <motion.div 
     initial={{ opacity: 0, scale: 0.98 }}
     animate={{ opacity: 1, scale: 1 }}
-    className="glass-card p-20 flex flex-col items-center justify-center text-center space-y-8 min-h-[500px] mt-10"
+    className="glass-card p-8 sm:p-20 flex flex-col items-center justify-center text-center space-y-8 min-h-[500px] mt-10"
   >
     <div className="relative">
       <div className="absolute -inset-10 bg-primary-600/20 blur-[60px] rounded-full animate-pulse" />
@@ -62,14 +62,14 @@ const EmptyState = ({ platform, onConnect }) => (
 );
 
 const FilterSelect = ({ value, onChange, options, connections = {} }) => (
-  <div className="relative group">
+  <div className="relative flex items-center group w-full sm:w-auto">
     <div className="absolute left-4 z-20 top-1/2 -translate-y-1/2 pointer-events-none opacity-50 group-hover:opacity-100 transition-opacity">
       <div className={`w-1.5 h-1.5 rounded-full ${value === 'All Platforms' ? 'bg-primary-500' : (connections[value.toLowerCase()] ? 'bg-emerald-500' : 'bg-slate-500')}`} />
     </div>
     <select
       value={value}
       onChange={(e) => onChange(e.target.value)}
-      className="appearance-none pl-8 pr-10 py-2.5 rounded-2xl glass-panel border border-white/10 text-sm font-black text-slate-600 dark:text-slate-300 outline-none focus:ring-2 focus:ring-primary-500/50 cursor-pointer bg-transparent transition-all duration-300 hover:border-primary-500/30"
+      className="appearance-none w-full pl-8 pr-10 py-2.5 rounded-2xl glass-panel border border-white/10 text-sm font-black text-slate-600 dark:text-slate-300 outline-none focus:ring-2 focus:ring-primary-500/50 cursor-pointer bg-transparent transition-all duration-300 hover:border-primary-500/30"
     >
       {options.map((o) => {
         const isConnected = o === 'All Platforms' || connections[o.toLowerCase()];
@@ -218,19 +218,21 @@ const Analytics = () => {
     >
       {/* ── Header ── */}
       <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6">
-        <div className="space-y-1">
-          <h1 className="text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+        <div className="space-y-1 w-full lg:w-auto">
+          <h1 className="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
             Advanced <span className="bg-clip-text text-transparent bg-gradient-to-r from-emerald-500 to-primary-500">Analytics</span>
           </h1>
-          <p className="text-sm text-slate-500 dark:text-slate-400 font-medium mt-1">
+          <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 font-medium mt-1">
             Deep-dive metrics for <span className="text-primary-500 font-bold">{platform}</span> across <span className="text-primary-500 font-bold">{timeRange}</span>
           </p>
         </div>
-        <div className="flex flex-wrap items-center gap-3 glass-panel p-1.5 rounded-3xl border border-white/10 shadow-lg shadow-black/5 dark:shadow-black/20">
-          <FilterSelect value={platform} onChange={setPlatform} options={PLATFORMS} connections={connections} />
-          <FilterSelect value={timeRange} onChange={setTimeRange} options={TIME_RANGES} />
-          <div className="w-px h-6 bg-black/5 dark:bg-white/10 mx-1" />
-          <button className="px-6 py-2.5 bg-primary-600 hover:bg-primary-700 text-white rounded-2xl shadow-xl shadow-primary-600/20 transition-all font-bold text-sm hover:scale-105 active:scale-95">
+        <div className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-3 w-full lg:w-auto glass-panel p-2 sm:p-1.5 rounded-3xl border border-white/10 shadow-lg shadow-black/5 dark:shadow-black/20">
+          <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
+            <FilterSelect value={platform} onChange={setPlatform} options={PLATFORMS} connections={connections} />
+            <FilterSelect value={timeRange} onChange={setTimeRange} options={TIME_RANGES} />
+          </div>
+          <div className="hidden sm:block w-px h-6 bg-black/5 dark:bg-white/10 mx-1" />
+          <button className="px-6 py-2.5 bg-primary-600 hover:bg-primary-700 text-white rounded-2xl shadow-xl shadow-primary-600/20 transition-all font-bold text-sm w-full sm:w-auto">
             Export Report
           </button>
         </div>

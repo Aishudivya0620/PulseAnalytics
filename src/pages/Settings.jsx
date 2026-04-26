@@ -269,20 +269,20 @@ const Settings = () => {
       className="max-w-5xl mx-auto space-y-6 pb-12"
     >
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Settings</h1>
-        <p className="text-slate-500 dark:text-slate-400 text-sm mt-1">Manage your account preferences, team members, and subscription.</p>
+        <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">Settings</h1>
+        <p className="text-slate-500 dark:text-slate-400 text-xs sm:text-sm mt-1">Manage your account preferences, team members, and subscription.</p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-        {/* Sidebar Tabs */}
-        <div className="lg:col-span-1 space-y-1">
+        {/* Sidebar Tabs - Horizontal on Mobile */}
+        <div className="lg:col-span-1 flex lg:flex-col overflow-x-auto lg:overflow-x-visible pb-2 lg:pb-0 gap-1 no-scrollbar">
           {tabs.map((tab) => {
             const Icon = tab.icon;
             return (
               <button
                 key={tab.name}
                 onClick={() => setActiveTab(tab.name)}
-                className={`w-full flex items-center justify-between px-4 py-3 rounded-xl text-sm font-medium transition-all ${
+                className={`flex-shrink-0 flex items-center justify-between px-4 py-3 rounded-xl text-sm font-medium transition-all ${
                   activeTab === tab.name 
                     ? 'bg-primary-600 text-white shadow-lg shadow-primary-500/25' 
                     : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800'
@@ -290,9 +290,9 @@ const Settings = () => {
               >
                 <div className="flex items-center gap-3">
                   <Icon size={18} />
-                  {tab.name}
+                  <span className="whitespace-nowrap">{tab.name}</span>
                 </div>
-                {activeTab === tab.name && <ChevronRight size={16} />}
+                {activeTab === tab.name && <ChevronRight size={16} className="hidden lg:block ml-2" />}
               </button>
             );
           })}

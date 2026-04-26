@@ -12,11 +12,17 @@ const DashboardLayout = () => {
   const { pathname } = useLocation();
   const mainRef = useRef(null);
 
-  // Reset scroll position on route change
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+
   useEffect(() => {
-    if (mainRef.current) {
-      mainRef.current.scrollTop = 0;
-    }
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // Sync mobile menu close with route changes
+  useEffect(() => {
+    setMobileMenuOpen(false);
   }, [pathname]);
 
   return (
@@ -38,24 +44,26 @@ const DashboardLayout = () => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setMobileMenuOpen(false)}
-              className="fixed inset-0 bg-black/60 z-40 md:hidden backdrop-blur-md"
+              className="fixed inset-0 bg-black/60 z-[60] md:hidden backdrop-blur-md"
             />
             <motion.div 
               initial={{ x: -300 }}
               animate={{ x: 0 }}
               exit={{ x: -300 }}
               transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-              className="fixed inset-y-0 left-0 z-50 md:hidden"
+              className="fixed inset-y-0 left-0 z-[70] md:hidden"
             >
-              <Sidebar />
+              <Sidebar isMobile onNavClick={() => setMobileMenuOpen(false)} />
             </motion.div>
           </>
         )}
       </AnimatePresence>
 
       <motion.div 
-        initial={{ marginLeft: sidebarCollapsed ? 88 : 280 }}
-        animate={{ marginLeft: sidebarCollapsed ? 88 : 280 }}
+        initial={false}
+        animate={{ 
+          marginLeft: isMobile ? 0 : (sidebarCollapsed ? 88 : 280) 
+        }}
         transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
         className="flex-1 flex flex-col h-screen relative z-10 transition-all duration-500 overflow-hidden"
       >
