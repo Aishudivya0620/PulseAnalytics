@@ -13,10 +13,25 @@
           var supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
           if (theme === 'dark' || (!theme && supportDarkMode)) {
             document.documentElement.classList.add('dark');
-            document.documentElement.style.backgroundColor = '#030712'; // Deep blue-black from index.css
+            document.documentElement.style.backgroundColor = '#030712';
           } else if (theme === 'light') {
             document.documentElement.classList.remove('dark');
             document.documentElement.style.backgroundColor = '#ffffff';
+          }
+
+          // Handle HashRouter redirection for manual URL entry
+          var path = window.location.pathname;
+          var hash = window.location.hash;
+          // Production base check
+          var base = '/PulseAnalytics/';
+          
+          if (!hash) {
+            if (path.startsWith(base) && path !== base) {
+              var route = path.substring(base.length);
+              window.location.replace(base + '#/' + route);
+            } else if (path !== '/' && path !== '/PulseAnalytics' && path !== '/PulseAnalytics/') {
+              window.location.replace('/#/' + path.substring(1));
+            }
           }
         } catch (e) {}
       })();
